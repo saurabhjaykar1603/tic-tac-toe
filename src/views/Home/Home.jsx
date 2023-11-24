@@ -14,6 +14,21 @@ function Home() {
     8: "",
     9: "",
   });
+  const reset = () => {
+    setPlayer(1);
+    setBoard({
+      1: "",
+      2: "",
+      3: "",
+      4: "",
+      5: "",
+      6: "",
+      7: "",
+      8: "",
+      9: "",
+    });
+    setWinner(null);
+  };
   const [winner, setWinner] = useState(null);
   const clickWinner = () => {
     const symbol = player === 1 ? " 🐒" : "🐸";
@@ -217,6 +232,14 @@ function Home() {
             {board[9]}
           </div>
         </div>
+      </div>
+      <div className=" mt-5 text-center">
+        <button
+          type="button"
+          className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-8 ring-0 rounded"
+        onClick={reset}>
+          Reset
+        </button>
       </div>
     </>
   );
