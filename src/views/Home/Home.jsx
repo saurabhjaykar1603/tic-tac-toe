@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import showTost from "crunchy-toast";
+import Confetti from "react-confetti";
 
 function Home() {
+  const [confettiVisible, setConfettiVisible] = useState(false);
   const [player, setPlayer] = useState(1);
   const [board, setBoard] = useState({
     1: "",
@@ -28,6 +30,7 @@ function Home() {
       9: "",
     });
     setWinner(null);
+    setConfettiVisible(false);
   };
   const [winner, setWinner] = useState(null);
   const clickWinner = () => {
@@ -35,7 +38,8 @@ function Home() {
     if (board[1] === symbol && board[2] === symbol && board[3] === symbol) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     } else if (
       board[4] === symbol &&
@@ -44,7 +48,8 @@ function Home() {
     ) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     } else if (
       board[7] === symbol &&
@@ -59,7 +64,8 @@ function Home() {
     ) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     } else if (
       board[2] === symbol &&
@@ -68,7 +74,8 @@ function Home() {
     ) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     } else if (
       board[3] === symbol &&
@@ -77,7 +84,8 @@ function Home() {
     ) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     } else if (
       board[1] === symbol &&
@@ -86,7 +94,8 @@ function Home() {
     ) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     } else if (
       board[3] === symbol &&
@@ -95,7 +104,8 @@ function Home() {
     ) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
-        setWinner(player)
+        setWinner(player),
+        setConfettiVisible(true)
       );
     }
     setPlayer(player === 1 ? 2 : 1);
@@ -237,9 +247,23 @@ function Home() {
         <button
           type="button"
           className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-8 ring-0 rounded"
-        onClick={reset}>
+          onClick={reset}
+        >
           Reset
         </button>
+        {winner !== null && confettiVisible && (
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            confettiSource={{
+              x: window.innerWidth / 7,
+              y: 2,
+              w: window.innerWidth,
+              h: 0,
+            }}
+            // other properties...
+          />
+        )}
       </div>
     </>
   );
