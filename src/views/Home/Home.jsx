@@ -31,7 +31,7 @@ function Home() {
   };
   const [winner, setWinner] = useState(null);
   const clickWinner = () => {
-    const symbol = player === 1 ? " 🐒" : "🐸";
+    const symbol = player === 1 ? "🐒" : "🐸";
     if (board[1] === symbol && board[2] === symbol && board[3] === symbol) {
       return (
         showTost(`winner is player : ${player}`, "success", 6000),
