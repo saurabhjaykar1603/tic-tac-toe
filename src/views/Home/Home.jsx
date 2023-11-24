@@ -14,16 +14,23 @@ function Home() {
     8: "",
     9: "",
   });
+  const [winner, setWinner] = useState(null);
   const clickWinner = () => {
     const symbol = player === 1 ? " 🐒" : "🐸";
     if (board[1] === symbol && board[2] === symbol && board[3] === symbol) {
-      return showTost(`winner is ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     } else if (
       board[4] === symbol &&
       board[5] === symbol &&
       board[6] === symbol
     ) {
-      return showTost(`winner is player : ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     } else if (
       board[7] === symbol &&
       board[8] === symbol &&
@@ -35,31 +42,46 @@ function Home() {
       board[4] === symbol &&
       board[7] === symbol
     ) {
-      return showTost(`winner is player : ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     } else if (
       board[2] === symbol &&
       board[5] === symbol &&
       board[8] === symbol
     ) {
-      return showTost(`winner is player : ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     } else if (
       board[3] === symbol &&
       board[6] === symbol &&
       board[9] === symbol
     ) {
-      return showTost(`winner is player : ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     } else if (
       board[1] === symbol &&
       board[5] === symbol &&
       board[9] === symbol
     ) {
-      return showTost(`winner is player : ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     } else if (
       board[3] === symbol &&
       board[5] === symbol &&
       board[7] === symbol
     ) {
-      return showTost(`winner is player : ${player}`, "success", 6000);
+      return (
+        showTost(`winner is player : ${player}`, "success", 6000),
+        setWinner(player)
+      );
     }
     setPlayer(player === 1 ? 2 : 1);
   };
@@ -69,7 +91,7 @@ function Home() {
   }, [board]);
 
   const play = (boxNO) => {
-    if (board[boxNO] !== "") {
+    if (board[boxNO] !== "" || winner !== null) {
       return;
     }
 
@@ -104,6 +126,13 @@ function Home() {
         <div className="text-center mt-5">
           <span className="px-7 py-2 bg-slate-50 rounded-full shadow-md   ">
             Current Player : {player === 1 ? "🐒" : "🐸"}
+          </span>
+          <span className=" mt-5 block ">
+            {winner ? (
+              <span className="px-7 py-2  bg-slate-50 rounded-full shadow-md   ">
+                Winner is : {player === 1 ? "🐒" : "🐸"}
+              </span>
+            ) : null}
           </span>
         </div>
       </div>
